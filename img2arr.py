@@ -2,7 +2,7 @@ import numpy as np
 from PIL import Image
 
 # function to take in images, convert them to array of arrays
-def fetch_angiogram_images():
+def img2array_converter():
 
 	# initialize an empty array
 	list_of_arrays = []
