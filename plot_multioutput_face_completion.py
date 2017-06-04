@@ -16,6 +16,9 @@ print(__doc__)
 import numpy as np
 import matplotlib.pyplot as plt
 
+# import the function to fetch angiogram images 
+from fetch_images import fetch_angiogram_images
+
 from sklearn.datasets import fetch_olivetti_faces
 from sklearn.utils.validation import check_random_state
 
@@ -26,7 +29,7 @@ from sklearn.linear_model import RidgeCV
 
 # Load the faces datasets
 # this method returns a .pkz file of images in 64x64 format
-data = fetch_olivetti_faces()
+data = fetch_angiogram_images()
 targets = data.target
 
 data = data.images.reshape((len(data.images), -1))
