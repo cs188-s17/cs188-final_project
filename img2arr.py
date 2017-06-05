@@ -3,11 +3,9 @@ from PIL import Image
 
 import os
 
+print("start")
 # function to take in images, convert them to array of arrays
 def img2array_converter():
-
-	print("sup dawg")
-
 	# initialize an empty array
 	list_of_arrays = []
 	
@@ -58,7 +56,5 @@ def img2array_converter():
 		mat = numpy.array(list_of_arrays)
 		for fh in f:
 			fh.close()
-			
-	
-
+	print("reached end of program")	
 	return mat

@@ -18,8 +18,11 @@ import matplotlib.pyplot as plt
 
 # import the function to fetch angiogram images 
 from fetch_images import fetch_angiogram_images
+# overrides: from sklearn.datasets import fetch_olivetti_faces
 
-from sklearn.datasets import fetch_olivetti_faces
+# import the img2array converter (TODO: check why?)
+from img1arr import img2array_converter
+
 from sklearn.utils.validation import check_random_state
 
 from sklearn.ensemble import ExtraTreesRegressor
@@ -27,10 +30,12 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import RidgeCV
 
-from img2arr import fetch_angiogram_images
 
-# Load the faces datasets
-# this method returns a .pkz file of images in 64x64 format
+"""
+Load the faces datasets
+this method returns a .pkz file of images in 64x64 format
+"""
+
 data = fetch_angiogram_images()
 # targets = data.target
 targets = np.array(range(28))
