@@ -13,7 +13,7 @@ import pdb
 from skimage.io import imread
 
 from PIL import Image
-from pkl import _pkl_filepath
+#from pkl import _pkl_filepath
 
 from sklearn.utils.validation import check_random_state
 from sklearn.ensemble import ExtraTreesRegressor
