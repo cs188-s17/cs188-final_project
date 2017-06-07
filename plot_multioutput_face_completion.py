@@ -10,6 +10,7 @@ regression and ridge regression complete the lower half of those faces.
 """
 print(__doc__)
 
+import pdb
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -28,12 +29,14 @@ warnings.filterwarnings("ignore", category=np.VisibleDeprecationWarning)
 # this method returns a .pkz file of images in 64x64 format
 data = fetch_images()
 targets = data.target
-print(data)
-print(targets)
+pdb.set_trace()
+#print(data)
+#print(targets)
 
-#data = data.images.reshape((len(data.images), -1))
-train = data[targets < 30]
-test = data[targets >= 30]  # Test on independent people
+data = data.images.reshape((len(data.images), -1))
+#print(data[0])
+train = data[targets < 11] #data[targets < 7]
+test = data[targets >= 11]             #[targets >= 7]  # Test on independent people
 
 # Test on a subset of people
 n_faces = 5
@@ -42,6 +45,7 @@ face_ids = rng.randint(test.shape[0], size=(n_faces, ))
 test = test[face_ids, :]
 
 n_pixels = data.shape[1]
+# FIXME don't bother selecting halves
 X_train = train[:, :np.ceil(0.5 * n_pixels)]  # Upper half of the faces
 y_train = train[:, np.floor(0.5 * n_pixels):]  # Lower half of the faces
 X_test = test[:, :np.ceil(0.5 * n_pixels)]

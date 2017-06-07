@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import sklearn.datasets
+import pdb
+from skimage.io import imread
 
 from PIL import Image
 from pkl import _pkl_filepath
@@ -32,20 +34,24 @@ def fetch_images():
 	MODULE_DOCS = __doc__
 
 	# number of images
-	n_images = 30
+	#n_images = 28
 
 	# a list of images to be stitched into an array
 	image_list = glob.glob('edited_data/*.png')
+	n_images = len(image_list)
 
 	# create a numpy array of the images
-	image_array = np.array([np.array(Image.open(fname).convert('RGBA')) for fname in image_list])
+	image_array = np.array([imread(f, True) for f in image_list])
+	#image_array = np.array([Image.open(fname).convert("L") for fname in image_list])
 	faces = np.float32(image_array)
 
-	"""
-	print(faces.shape())
+	
+	#print(faces.shape())
 	faces = faces - faces.min()
 	faces /= faces.max()
-	faces = faces.reshape((30, 64, 64)).transpose(0, 2, 1)
+	faces = faces.reshape((28, 64, 64)).transpose(0, 2, 1)
+	#faces = faces.reshape((28, 64, 64))
+	"""
 	print(faces)
 	"""
 
