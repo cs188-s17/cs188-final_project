@@ -2,54 +2,38 @@
 ==============================================
 Face completion with a multi-output estimators
 ==============================================
-
 This example shows the use of multi-output estimator to complete images.
 The goal is to predict the lower half of a face given its upper half.
-
 The first column of images shows true faces. The next columns illustrate
 how extremely randomized trees, k nearest neighbors, linear
 regression and ridge regression complete the lower half of those faces.
-
 """
 print(__doc__)
 
 import numpy as np
 import matplotlib.pyplot as plt
 
-# import the function to fetch angiogram images 
-from fetch_images import fetch_angiogram_images
-# overrides: from sklearn.datasets import fetch_olivetti_faces
-
-# import the img2array converter (TODO: check why?)
-from img1arr import img2array_converter
-
 from sklearn.utils.validation import check_random_state
+from process_images import fetch_images 
 
 from sklearn.ensemble import ExtraTreesRegressor
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import RidgeCV
 
+import warnings
+warnings.filterwarnings("ignore", category=np.VisibleDeprecationWarning) 
 
-"""
-Load the faces datasets
-this method returns a .pkz file of images in 64x64 format
-"""
+# Load the faces datasets
+# this method returns a .pkz file of images in 64x64 format
+data = fetch_images()
+targets = data.target
+print(data)
+print(targets)
 
-data = fetch_angiogram_images()
-# targets = data.target
-targets = np.array(range(28))
-
-print (type(targets))
-print(type(data))
-
-# data = data.mat.reshape((len(data.mat), -1))
-# data = data.images.reshape((len(data.images), -1))
-data = data.reshape((len(data), -1))
-train = data[targets < 15]
-test = data[targets >= 15]
-# train = data[targets < 30]
-# test = data[targets >= 30]  # Test on independent people
+#data = data.images.reshape((len(data.images), -1))
+train = data[targets < 30]
+test = data[targets >= 30]  # Test on independent people
 
 # Test on a subset of people
 n_faces = 5
@@ -93,9 +77,7 @@ for i in range(n_faces):
         sub = plt.subplot(n_faces, n_cols, i * n_cols + 1,
                           title="sneha faces")
 
-# currently this is failing at line 90, I think it's something to do
-# with how this current algorithm is parsing through the array
-# We just need to fix it to work with our data I guess?
+
     sub.axis("off")
     sub.imshow(true_face.reshape(image_shape),
                cmap=plt.cm.gray,
