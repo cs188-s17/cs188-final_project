@@ -28,7 +28,7 @@ Image processing:
    Data required is in a folder called edited_data in the directory from where the program is run.
 	
 """
-def fetch_images():
+def fetch_drawings():
 	# Grab the module-level docstring to use as a description of the
 	# dataset
 	MODULE_DOCS = __doc__
@@ -37,7 +37,7 @@ def fetch_images():
 	#n_images = 28
 
 	# a list of images to be stitched into an array
-	image_list = glob.glob('final_before_image/*.png')
+	image_list = glob.glob('final_after_drawings/*.png')
 	n_images = len(image_list)
 
 	# create a numpy array of the images

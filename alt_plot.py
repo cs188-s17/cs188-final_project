@@ -14,9 +14,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from sklearn.utils.validation import check_random_state
-from old_process_images import old_fetch_images 
 from process_images import fetch_images 
-from process_drawings import fetch_drawings 
 
 from sklearn.ensemble import ExtraTreesRegressor
 from sklearn.neighbors import KNeighborsRegressor
@@ -27,7 +25,7 @@ import warnings
 warnings.filterwarnings("ignore", category=np.VisibleDeprecationWarning) 
 
 # this method returns a .pkz file of images in 64x64 format
-data = old_fetch_images()
+data = fetch_images()
 targets = data.target
 #pdb.set_trace()
 #print(data)
@@ -45,21 +43,18 @@ face_ids = rng.randint(test.shape[0], size=(n_faces, ))
 test = test[face_ids, :]
 
 n_pixels = data.shape[1]
-pdb.set_trace()
+#pdb.set_trace()
 # FIXME don't bother selecting halves
-
 X_train = train[:, :np.ceil(0.5 * n_pixels)]  # Upper half of the faces
 y_train = train[:, np.floor(0.5 * n_pixels):]  # Lower half of the faces
 X_test = test[:, :np.ceil(0.5 * n_pixels)]
 y_test = test[:, np.floor(0.5 * n_pixels):]
-
-"""
+'''
 X_train = train[:, :]  # Upper half of the faces
 y_train = train[:, :]  # Lower half of the faces
 X_test = test[:, :]
 y_test = test[:, :]
-pdb.set_trace()
-"""
+'''
 # Fit estimators
 ESTIMATORS = {
     "Extra trees": ExtraTreesRegressor(n_estimators=10, max_features=32,
@@ -82,7 +77,7 @@ plt.figure(figsize=(2. * n_cols, 2.26 * n_faces))
 plt.suptitle("Face completion with multi-output estimators", size=16)
 
 for i in range(n_faces):
-    #pdb.set_trace()
+    pdb.set_trace()
     true_face = np.hstack((X_test[i], y_test[i]))
 
     if i:

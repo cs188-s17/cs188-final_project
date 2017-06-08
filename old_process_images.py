@@ -28,7 +28,7 @@ Image processing:
    Data required is in a folder called edited_data in the directory from where the program is run.
 	
 """
-def fetch_images():
+def old_fetch_images():
 	# Grab the module-level docstring to use as a description of the
 	# dataset
 	MODULE_DOCS = __doc__
@@ -56,8 +56,8 @@ def fetch_images():
 	"""
 
 	# create the target 
-	#target = np.array([i // 2 for i in range(n_images)])
-	target = np.array([i // 1 for i in range(n_images)])
+	target = np.array([i // 2 for i in range(n_images)])
+	#target = np.array([i // 1 for i in range(n_images)])
 	#print(target)
 
 	# create the data part
