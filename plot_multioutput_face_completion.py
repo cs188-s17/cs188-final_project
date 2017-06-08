@@ -26,40 +26,64 @@ from sklearn.linear_model import RidgeCV
 import warnings
 warnings.filterwarnings("ignore", category=np.VisibleDeprecationWarning) 
 
-# this method returns a .pkz file of images in 64x64 format
-data = old_fetch_images()
-targets = data.target
-#pdb.set_trace()
-#print(data)
-#print(targets)
+# import the image before angiogram data
+data_images = fetch_images()
 
-data = data.images.reshape((len(data.images), -1))
-#print(data[0])
-train = data[targets < 11] 
-test = data[targets >= 11]  # Test on independent people
+# similarly, import the corresponding annotations
+data_drawings = fetch_drawings()
+
+# get the image target values
+im_targets = data_images.target
+
+# get the drawing target values
+draw_targets = data_drawings.target
+pdb.set_trace()
+
+# reshape the images array
+data_images = data_images.images.reshape((len(data_images.images), -1))
+
+# reshape the annotations array
+data_drawings = data_drawings.images.reshape((len(data_drawings.images), -1))
+
+# train on the before image, and on the after drawing
+train_im = data_images[im_targets < 11]
+train_draw = data_drawings[draw_targets < 11]
+pdb.set_trace()
+# test the after drawing on the before images
+test_im = data_images[im_targets >= 11]
+test_draw = data_drawings[draw_targets >= 11] 
 
 # Test on a subset of people
-n_faces = 5
+n_vals = 5
 rng = check_random_state(4)
-face_ids = rng.randint(test.shape[0], size=(n_faces, ))
-test = test[face_ids, :]
+img_ids = rng.randint(test_im.shape[0], size=(n_vals, ))
 
-n_pixels = data.shape[1]
+test_im = test_im[img_ids, :]
+test_draw = test_draw[img_ids, :]
+
+n_pixels = data_images.shape[1]
 pdb.set_trace()
 # FIXME don't bother selecting halves
-
+"""
 X_train = train[:, :np.ceil(0.5 * n_pixels)]  # Upper half of the faces
 y_train = train[:, np.floor(0.5 * n_pixels):]  # Lower half of the faces
 X_test = test[:, :np.ceil(0.5 * n_pixels)]
 y_test = test[:, np.floor(0.5 * n_pixels):]
 
 """
-X_train = train[:, :]  # Upper half of the faces
-y_train = train[:, :]  # Lower half of the faces
-X_test = test[:, :]
-y_test = test[:, :]
+# train on the images
+X_train = train_im[:, :]  
+
+# train on the annotations
+y_train = train_draw[:, :]
+
+# test using the images ... 
+X_test = test_draw[:, :]
+
+# on the drawings
+y_test = test_im[:, :]
 pdb.set_trace()
-"""
+
 # Fit estimators
 ESTIMATORS = {
     "Extra trees": ExtraTreesRegressor(n_estimators=10, max_features=32,
@@ -70,6 +94,8 @@ ESTIMATORS = {
 }
 
 y_test_predict = dict()
+
+# fit the training data to the estimator models above
 for name, estimator in ESTIMATORS.items():
     estimator.fit(X_train, y_train)
     y_test_predict[name] = estimator.predict(X_test)
@@ -77,39 +103,49 @@ for name, estimator in ESTIMATORS.items():
 # Plot the completed faces
 image_shape = (64, 64)
 
+# How many columns your output file has
 n_cols = 1 + len(ESTIMATORS)
-plt.figure(figsize=(2. * n_cols, 2.26 * n_faces))
-plt.suptitle("Face completion with multi-output estimators", size=16)
 
-for i in range(n_faces):
+# plot details
+plt.figure(figsize=(2. * n_cols, 2.26 * n_vals))
+
+# plot title
+plt.suptitle("Image prediction with multi-output estimators", size=16)
+
+for i in range(n_vals):
     #pdb.set_trace()
-    true_face = np.hstack((X_test[i], y_test[i]))
+    #true_pred = np.hstack((X_test[i], y_test[i]))
+
+    # the true drawing would be the annotation we had matched 
+    true_pred = X_test[i]
 
     if i:
-        sub = plt.subplot(n_faces, n_cols, i * n_cols + 1)
-    else:
-        sub = plt.subplot(n_faces, n_cols, i * n_cols + 1,
-                          title="sneha faces")
+        sub = plt.subplot(n_vals, n_cols, i * n_cols + 1)
+    else: 
+        sub = plt.subplot(n_vals, n_cols, i * n_cols + 1,
+                          title="the original drawing")
 
 
     sub.axis("off")
     #pdb.set_trace()
-    sub.imshow(true_face.reshape(image_shape),
+    sub.imshow(true_pred.reshape(image_shape),
                cmap=plt.cm.gray,
                interpolation="nearest")
 
     for j, est in enumerate(sorted(ESTIMATORS)):
-        completed_face = np.hstack((X_test[i], y_test_predict[est][i]))
+        #predicted_final = np.hstack((X_test[i], y_test_predict[est][i]))
+	# the predicted image from the estimators...
+        predicted_final = y_test_predict[est][i]
 
         if i:
-            sub = plt.subplot(n_faces, n_cols, i * n_cols + 2 + j)
+            sub = plt.subplot(n_vals, n_cols, i * n_cols + 2 + j)
 
         else:
-            sub = plt.subplot(n_faces, n_cols, i * n_cols + 2 + j,
+            sub = plt.subplot(n_vals, n_cols, i * n_cols + 2 + j,
                               title=est)
 
         sub.axis("off")
-        sub.imshow(completed_face.reshape(image_shape),
+        sub.imshow(predicted_final.reshape(image_shape),
                    cmap=plt.cm.gray,
                    interpolation="nearest")
 
