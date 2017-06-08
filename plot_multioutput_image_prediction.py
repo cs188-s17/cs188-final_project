@@ -28,27 +28,32 @@ warnings.filterwarnings("ignore", category=np.VisibleDeprecationWarning)
 
 # import the image before angiogram data
 data_images = fetch_images()
+#pdb.set_trace()
 
 # similarly, import the corresponding annotations
+# FIXME Data drawings returns all zero array???
 data_drawings = fetch_drawings()
+pdb.set_trace()
 
 # get the image target values
 im_targets = data_images.target
 
 # get the drawing target values
 draw_targets = data_drawings.target
-pdb.set_trace()
+#pdb.set_trace()
 
 # reshape the images array
 data_images = data_images.images.reshape((len(data_images.images), -1))
+#pdb.set_trace()
 
 # reshape the annotations array
 data_drawings = data_drawings.images.reshape((len(data_drawings.images), -1))
+#pdb.set_trace()
 
 # train on the before image, and on the after drawing
 train_im = data_images[im_targets < 11]
 train_draw = data_drawings[draw_targets < 11]
-pdb.set_trace()
+#pdb.set_trace()
 # test the after drawing on the before images
 test_im = data_images[im_targets >= 11]
 test_draw = data_drawings[draw_targets >= 11] 
@@ -62,7 +67,7 @@ test_im = test_im[img_ids, :]
 test_draw = test_draw[img_ids, :]
 
 n_pixels = data_images.shape[1]
-pdb.set_trace()
+#pdb.set_trace()
 # FIXME don't bother selecting halves
 """
 X_train = train[:, :np.ceil(0.5 * n_pixels)]  # Upper half of the faces
@@ -78,11 +83,11 @@ X_train = train_im[:, :]
 y_train = train_draw[:, :]
 
 # test using the images ... 
-X_test = test_draw[:, :]
+X_test = test_im[:, :]
 
 # on the drawings
-y_test = test_im[:, :]
-pdb.set_trace()
+y_test = test_draw[:, :]
+#pdb.set_trace()
 
 # Fit estimators
 ESTIMATORS = {
@@ -117,7 +122,7 @@ for i in range(n_vals):
     #true_pred = np.hstack((X_test[i], y_test[i]))
 
     # the true drawing would be the annotation we had matched 
-    true_pred = X_test[i]
+    true_pred = y_test[i]
 
     if i:
         sub = plt.subplot(n_vals, n_cols, i * n_cols + 1)
