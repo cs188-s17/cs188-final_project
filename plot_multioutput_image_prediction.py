@@ -31,7 +31,6 @@ data_images = fetch_images()
 #pdb.set_trace()
 
 # similarly, import the corresponding annotations
-# FIXME Data drawings returns all zero array???
 data_drawings = fetch_drawings()
 pdb.set_trace()
 
@@ -51,12 +50,12 @@ data_drawings = data_drawings.images.reshape((len(data_drawings.images), -1))
 #pdb.set_trace()
 
 # train on the before image, and on the after drawing
-train_im = data_images[im_targets < 11]
-train_draw = data_drawings[draw_targets < 11]
-#pdb.set_trace()
+train_im = data_images[im_targets < 20]
+train_draw = data_drawings[draw_targets < 20]
+pdb.set_trace()
 # test the after drawing on the before images
-test_im = data_images[im_targets >= 11]
-test_draw = data_drawings[draw_targets >= 11] 
+test_im = data_images[im_targets >= 20]
+test_draw = data_drawings[draw_targets >= 20] 
 
 # Test on a subset of people
 n_vals = 5
@@ -68,14 +67,6 @@ test_draw = test_draw[img_ids, :]
 
 n_pixels = data_images.shape[1]
 #pdb.set_trace()
-# FIXME don't bother selecting halves
-"""
-X_train = train[:, :np.ceil(0.5 * n_pixels)]  # Upper half of the faces
-y_train = train[:, np.floor(0.5 * n_pixels):]  # Lower half of the faces
-X_test = test[:, :np.ceil(0.5 * n_pixels)]
-y_test = test[:, np.floor(0.5 * n_pixels):]
-
-"""
 # train on the images
 X_train = train_im[:, :]  
 
