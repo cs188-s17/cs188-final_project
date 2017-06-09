@@ -1,37 +1,29 @@
-## Welcome to GitHub Pages
+#### CS 188b: Computational Methods for Medical Imaging
 
-You can use the [editor on GitHub](https://github.com/zwangzob/cs188-final_project/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+# **Final Project: 2D Cerebral Blood Vessel Segmentation**
+###           _Sneha Venkatesan, Tanya Lohia_
+#
+#
+#
+## Introduction
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Strokes are the third leading cause of death in the United States, with over 140,000 people dying every year due to strokes and their complications. In addition, they also lead to brain aneurysms and are the leading cause of serious long term disabiliies. While in the past few years the number of deaths causded by strokes has decreased, they continue to be a challenge for doctors to predict and treat effectively. With increasing population, resources to treat patients who have suffered from a stroke remain insufficient. Fortunately, technological advances, particularly machine learning tools can assist in this process by automating one of the most time consuming tasks: Blood vessel segmentation!
 
-### Markdown
+One way to assist prediction for strokes is blood vessel segmentation. It is critical for numerous medical applications including diagnosis of issues like arteriosclerosis, malfrmations in arteries and veins, tears in arterial linings and predicting lesion growth for ischemic stroke patients. Blood vessel annotation is primarily done using photoshop and can be incredibly labour intensive and time consuming, which can cause considerable setbacks to treatment processes. 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Several methods have been developed in an effort to automate this process in order to make it faster and more accessible. Currently, the most popular tools for this purpose are pattern classification and machine learning methods. Machine learning application is becoming increasingly popular for biomedical applications and can serve as useful aids for diagnosis. Our aim with this project is to test several machine learning algorithms to discern which are best in the context of blood vessel segmentation.
 
-```markdown
-Syntax highlighted code block
+#
+## Methods
 
-# Header 1
-## Header 2
-### Header 3
+For the machine learning component we used Python's Scikit-Learn packages, and used a regression tool for segmenting vessels. This was originally a "face-completion" project. This means that it took images of faces and ran four different machine learning algorithms on them. Then printed the original top half of the face and the machine learning algorithm's output as the lower half to compare similarities and effectiveness of the various algorithms. We used this structure and adopted it to our requirements. 
 
-- Bulleted
-- List
+Professor Scalzo providded us with the required data which was in the form of two files of images. An original image data file consisting cerebral angiography scans of people who suffered from an ischemic stroke, and an annotations file which consisted of corresponding annotations illustrated using Photoshop. 
 
-1. Numbered
-2. List
+![Image of Data](https://github.com/zwangzob/cs188-final_project/blob/master/img_data.png)
+![image of annotation](https://github.com/zwangzob/cs188-final_project/blob/master/img_anno.png)
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
+Our aim was to feed both the images as input, and train the algorithms to produce the annotated images itself given new cerebral angiography data scans. 
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/zwangzob/cs188-final_project/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
