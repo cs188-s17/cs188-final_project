@@ -1,6 +1,5 @@
 """
-There are 2 different images (a before and an 
-after) for 14 different images. 
+Processing annotations.
 """
 print(__doc__)
 
@@ -33,41 +32,27 @@ def fetch_drawings():
 	# dataset
 	MODULE_DOCS = __doc__
 
-	# number of images
-	#n_images = 28
-
 	# a list of images to be stitched into an array
-	image_list = glob.glob('final_after_drawings/*.png')
+	image_list = glob.glob('after/*.png')
 	n_images = len(image_list)
 
 	# create a numpy array of the images
 	image_array = np.array([imread(f, True) for f in image_list])
-	#image_array = np.array([Image.open(fname).convert("L") for fname in image_list])
 	faces = np.float32(image_array)
 
-	
-	#print(faces.shape())
 	faces = faces - faces.min()
 	faces /= faces.max()
 	faces = faces.reshape((n_images, 64, 64)).transpose(0, 2, 1)
-	#faces = faces.reshape((28, 64, 64))
-	"""
-	print(faces)
-	"""
 
 	# create the target 
-	#target = np.array([i // 2 for i in range(n_images)])
 	target = np.array([i // 1 for i in range(n_images)])
-	#print(target)
 
 	# create the data part
 	data=faces.reshape(len(faces), -1)
-	#print(data)
 
 	# create the descr
 	DESCR=MODULE_DOCS
 
 	data_group = sklearn.datasets.base.Bunch(data=data, images=faces, target=target, DESCR=DESCR)
 	return data_group
-	#return Bunch(data=data, images=faces, target=target, DESCR=DESCR)
 
