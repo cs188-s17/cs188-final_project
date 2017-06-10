@@ -3,7 +3,13 @@
 # **Final Project: 2D Cerebral Blood Vessel Segmentation**
 ###           _Sneha Venkatesan, Tanya Lohia_
 
+## Usage
+In order to run this program, first ensure that the before and after data is in 64x64 format, in folders named "before" and "after" respectively, in your directory with the program files. This program requires both python2 as well as numpy and scipy installed. Images with transparent backgrounds should be formatted likewise so that they are processed by the program. In order to run the program from your current directory, enter the following into the command prompt: 
+```
+        python2 test_models.py
+```
 
+Your output will be a png file showing the expected image, as well as the image predicted by the four models we tested our data on, namely, k-nearest-neighbors, extra trees, linear regression and ridge. 
 
 ## Introduction
 
