@@ -2,9 +2,9 @@
 
 # **Final Project: 2D Cerebral Blood Vessel Segmentation**
 ###           _Sneha Venkatesan, Tanya Lohia_
-#
-#
-#
+
+
+
 ## Introduction
 
 Strokes are the third leading cause of death in the United States, with over 140,000 people dying every year due to strokes and their complications. In addition, they also lead to brain aneurysms and are the leading cause of serious long term disabiliies. While in the past few years the number of deaths causded by strokes has decreased, they continue to be a challenge for doctors to predict and treat effectively. With increasing population, resources to treat patients who have suffered from a stroke remain insufficient. Fortunately, technological advances, particularly machine learning tools can assist in this process by automating one of the most time consuming tasks: Blood vessel segmentation!
