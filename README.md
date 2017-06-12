@@ -3,7 +3,7 @@
 # **Final Project: 2D Cerebral Blood Vessel Segmentation**
 ###           _Sneha Venkatesan, Tanya Lohia_
 
-# ______________________________________________________________________________________________________________________________________
+
 ## Usage
 In order to run this program, first ensure that the before and after data is in 64x64 format, in folders named "before" and "after" respectively, in your directory with the program files. This program requires both python2 as well as numpy and scipy installed. Images with transparent backgrounds should be formatted likewise so that they are processed by the program. In order to run the program from your current directory, enter the following into the command prompt: 
 ```
@@ -26,8 +26,8 @@ For the machine learning component we used Python's Scikit-Learn packages, and u
 
 Professor Scalzo providded us with the required data which was in the form of two files of images. An original image data file consisting cerebral angiography scans of people who suffered from an ischemic stroke, and an annotations file which consisted of corresponding annotations illustrated using Photoshop. 
 
-![Image of Data](images/img_data.png)         ![Image of annotation](images/img_anno.png)
-### Figure 1: Example of Original Cerebral Angiography Scan (_left_), Example of Corresponding Hand Drawn Annotation (_Right_)
+![Image of Data](images/img_data.png)![Image of annotation](images/img_anno.png)
+#### Figure 1: Example of Original Cerebral Angiography Scan (_left_), Example of Corresponding Hand Drawn Annotation (_Right_)
 
 
 Our aim was to feed both the images as input in the form of pixel arrays and train the algorithms to produce the annotated images themselves given new cerebral angiography data scans. There are four regression based algorithms employed and they help compare the results to determine which one produces the most accurate images. These are:
@@ -49,9 +49,9 @@ The promary method we used to evaluate the data was visual comparison to the exp
 Ultimately, only two of the four algorithms proved fairly efficient in learning how to predict drawings from the Cerebral Angiography scans. An example image of the results are as follows:
 
 ![Image of Results](images/final%20results.png) 
-### Figure 2: Example of Output Results
+#### Figure 2: Example of Output Results
 
-As is evident in *figure 3* the clearest and most accurate results were produced by the Extra Trees algorithm. The Ridge and Linear Regression algorithms produced similar results in that they were successful in predicting the right base structure but the image is significantly obscure. The K-nn model is slightly clearer but there is still a considerable amount of noise in the background with too many extra vessels. In the Extra Trees model, although it is the most accurate, the exact blood vessels are not conspicuous enough to substitute in for the hand drawn annotations.  
+As is evident in *figure 2* the clearest and most accurate results were produced by the Extra Trees algorithm. The Ridge and Linear Regression algorithms produced similar results in that they were successful in predicting the right base structure but the image is significantly obscure. The K-nn model is slightly clearer but there is still a considerable amount of noise in the background with too many extra vessels. In the Extra Trees model, although it is the most accurate, the exact blood vessels are not conspicuous enough to substitute in for the hand drawn annotations.  
 
 ## Discussion
 
