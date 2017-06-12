@@ -19,7 +19,6 @@ One way to assist prediction for strokes is blood vessel segmentation. It is cri
 
 Several methods have been developed in an effort to automate this process in order to make it faster and more accessible. Currently, the most popular tools for this purpose are pattern classification and machine learning methods. Machine learning application is becoming increasingly popular for biomedical applications and can serve as useful aids for diagnosis. Our aim with this project is to test several machine learning algorithms to discern which are best in the context of blood vessel segmentation.
 
-#
 ## Methods
 
 For the machine learning component we used Python's Scikit-Learn packages, and used a regression tool for segmenting vessels. This was originally a "face-completion" project. This means that it took images of faces and ran four different machine learning algorithms on them. Then printed the original top half of the face and the machine learning algorithm's output as the lower half to compare similarities and effectiveness of the various algorithms. We used this structure and adopted it to our requirements. 
@@ -42,12 +41,10 @@ Our aim was to feed both the images as input in the form of pixel arrays and tra
 4.  Ridge Regression
    i.  This is a variation of the linear regression model that is used most often when the predictor variables are strongly correlated.        If no particular **x** produces a satisfying answer in the ordinary least squares linear regression method described above, then        the ridge regression model provides a better fit. It does so by purposefully introducing bias to the value of **_B_** in an              attempt to reduce the variability of the estimate.
    
-#
 ## Evaluation
 
 The promary method we used to evaluate the data was visual comparison to the expected output. Considering that the data consists of pixels arrays of size 64x64 extracted from cerebral angiography scans of patients at the UCLA Medical Center who suffered from ischemic strokes, we also recognize that they do not provide a wholistic representation of all brain scans for blood vessels. The questions we considered were, if the results would improve with multiple iterations of the experiment. How parametric models would perform as compared to non-parametric, and the implications of the size of the data set amongst others.
 
-#
 ## Results 
 
 Ultimately, only two of the four algorithms proved fairly efficient in learning how to predict drawings from the Cerebral Angiography scans. An example image of the results are as follows:
@@ -57,7 +54,6 @@ Ultimately, only two of the four algorithms proved fairly efficient in learning 
 
 As is evident in *figure 3* the clearest and most accurate results were produced by the Extra Trees algorithm. The Ridge and Linear Regression algorithms produced similar results in that they were successful in predicting the right base structure but the image is significantly obscure. The K-nn model is slightly clearer but there is still a considerable amount of noise in the background with too many extra vessels. In the Extra Trees model, although it is the most accurate, the exact blood vessels are not conspicuous enough to substitute in for the hand drawn annotations.  
 
-#
 ## Discussion
 
 Part of the reasons for the aforementioned trends could be in the structure of the algorithms themselves. The Linear Regression and Ridge algorithms are both models based on linear regression models which along with being one of the oldest and most studied machine learning algorithms, are also less reliable in situations where the input data has more noise. It assumes that the relationship between the input and output is linear and so it cannot train well for situations where the linearity of the relationship is less pronounced, resulting in a considerable amount of noise in the resulting output. 
