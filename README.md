@@ -26,9 +26,9 @@ For the machine learning component we used Python's Scikit-Learn packages, and u
 
 Professor Scalzo providded us with the required data which was in the form of two files of images. An original image data file consisting cerebral angiography scans of people who suffered from an ischemic stroke, and an annotations file which consisted of corresponding annotations illustrated using Photoshop. 
 
-![Image of Data](images/img_data.png)
-![Image of annotation](https://github.com/zwangzob/cs188-final_project/blob/master/images/img_anno.png)
-### Figure 1: Example of Original Cerebral Angiography Scan (_left_). Example of Corresponding Hand Drawn Annotation (_Right_)
+![Image of Data](images/img_data.png)                   
+![Image of annotation](images/img_anno.png)
+### Figure 1: Example of Original Cerebral Angiography Scan (_left_), Example of Corresponding Hand Drawn Annotation (_Right_)
 
 
 Our aim was to feed both the images as input in the form of pixel arrays and train the algorithms to produce the annotated images themselves given new cerebral angiography data scans. There are four regression based algorithms employed and they help compare the results to determine which one produces the most accurate images. These are:
