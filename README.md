@@ -26,8 +26,7 @@ For the machine learning component we used Python's Scikit-Learn packages, and u
 
 Professor Scalzo providded us with the required data which was in the form of two files of images. An original image data file consisting cerebral angiography scans of people who suffered from an ischemic stroke, and an annotations file which consisted of corresponding annotations illustrated using Photoshop. 
 
-![Image of Data](images/img_data.png)                   
-![Image of annotation](images/img_anno.png)
+![Image of Data](images/img_data.png)         ![Image of annotation](images/img_anno.png)
 ### Figure 1: Example of Original Cerebral Angiography Scan (_left_), Example of Corresponding Hand Drawn Annotation (_Right_)
 
 
