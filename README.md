@@ -52,7 +52,8 @@ The promary method we used to evaluate the data was visual comparison to the exp
 
 Ultimately, only two of the four algorithms proved fairly efficient in learning how to predict drawings from the Cerebral Angiography scans. An example image of the results are as follows:
 
-![Image of Results](https://github.com/cs188-s17/cs188-final_project/blob/master/images/final%20results.png) ### Figure 3: Example of Output Results
+![Image of Results](https://github.com/cs188-s17/cs188-final_project/blob/master/images/final%20results.png) 
+### Figure 3: Example of Output Results
 
 As is evident in *figure 3* the clearest and most accurate results were produced by the Extra Trees algorithm. The Ridge and Linear Regression algorithms produced similar results in that they were successful in predicting the right base structure but the image is significantly obscure. The K-nn model is slightly clearer but there is still a considerable amount of noise in the background with too many extra vessels. In the Extra Trees model, although it is the most accurate, the exact blood vessels are not conspicuous enough to substitute in for the hand drawn annotations.  
 
