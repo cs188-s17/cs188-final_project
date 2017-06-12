@@ -1,6 +1,6 @@
 """
 ==============================================
-Face completion with a multi-output estimators
+Image completion with a multi-output estimators
 ==============================================
 This example shows the use of multi-output estimator to complete images.
 The first column of images shows true output. The next columns illustrate
@@ -14,7 +14,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from sklearn.utils.validation import check_random_state
-from old_process_images import old_fetch_images 
 from process_images import fetch_images 
 from process_drawings import fetch_drawings 
 
@@ -44,13 +43,14 @@ data_images = data_images.images.reshape((len(data_images.images), -1))
 # reshape the annotations array
 data_drawings = data_drawings.images.reshape((len(data_drawings.images), -1))
 
+target_val = 11
 # train on the before image, and on the after drawing
-train_im = data_images[im_targets < 11]
-train_draw = data_drawings[draw_targets < 11]
+train_im = data_images[im_targets < target_val]
+train_draw = data_drawings[draw_targets < target_val]
 
 # test the after drawing on the before images
-test_im = data_images[im_targets >= 11]
-test_draw = data_drawings[draw_targets >= 11] 
+test_im = data_images[im_targets >= target_val]
+test_draw = data_drawings[draw_targets >= target_val] 
 
 # Test on a subset of people
 n_vals = 5
