@@ -5,7 +5,7 @@
 
 
 ## Usage
-In order to set up a virtual environment with all the necessary dependencies, run the following command: 
+In order to run this program, you require [anaconda](https://docs.continuum.io/anaconda/install). Follow the directions at the link to install it. In order to set up a virtual environment with all the necessary dependencies, run the following from the command line:
 
 ```
 conda create -n py2 --name cs188-st --file requirements.txt
@@ -15,8 +15,7 @@ In order to activate the environment, run:
 ```
 source activate cs188-st 
 ```
-
-In order to run this program, first ensure that the before and after data is in 64x64 format, in folders named "before" and "after" respectively, in your directory with the program files. This program requires both python2 as well as numpy and scipy installed. Images with transparent backgrounds should be formatted likewise so that they are processed by the program. In order to run the program from your current directory, enter the following into the command prompt: 
+In order to run this program, download the project (the necessary image files are included in the folder). In order to run the program from your current directory, enter the following into the command prompt: 
 ```
 python2 test_models.py
 ```
